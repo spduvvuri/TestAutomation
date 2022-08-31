@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "e3c653fd-41d7-432d-a3b2-e4176be0b4c8",
+		"name": "binance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10246337"
+	},
+	"item": [
+		{
+			"name": "Get - Quotes_NoAuth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"  pm.test(pm.info.requestName + ' - Status code is 200', function () {\r",
+							"    pm.response.to.have.status(data.validation.expStatusCode);\r",
+							"});\r",
+							"\r",
+							"pm.test(pm.info.requestName + ' -crypto quotes base schema validation', function() {\r",
+							"    var schemaBase = JSON.parse(pm.variables.get(\"crypto_quotes_base_schema\"));\r",
+							"    var Ajv = require('ajv'), ajv = new Ajv({ logger: console, allErrors: true }), schema = schemaBase;\r",
+							"    pm.expect(ajv.validate(schema, pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(pm.info.requestName + ' - Expected Reponse Length.', function() {\r",
+							"    var jsonData = pm.response.json();\r",
+							"   console.log((jsonData.length))\r",
+							"   pm.expect(jsonData.length).to.equal(data.validation.expLength);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api2.binance.com/api/v3/ticker/24hr?symbols=[\"{{symbols}}\"]",
+					"protocol": "https",
+					"host": [
+						"api2",
+						"binance",
+						"com"
+					],
+					"path": [
+						"api",
+						"v3",
+						"ticker",
+						"24hr"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "[\"{{symbols}}\"]"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "crypto_quotes_base_schema",
+			"value": "{\n  \"type\": \"array\",\n  \"items\": [\n    {\n      \"type\": \"object\",\n      \"properties\": {\n        \"symbol\": {\n          \"type\": \"string\"\n        },\n        \"priceChange\": {\n          \"type\": \"string\"\n        },\n        \"priceChangePercent\": {\n          \"type\": \"string\"\n        },\n        \"weightedAvgPrice\": {\n          \"type\": \"string\"\n        },\n        \"prevClosePrice\": {\n          \"type\": \"string\"\n        },\n        \"lastPrice\": {\n          \"type\": \"string\"\n        },\n        \"lastQty\": {\n          \"type\": \"string\"\n        },\n        \"bidPrice\": {\n          \"type\": \"string\"\n        },\n        \"bidQty\": {\n          \"type\": \"string\"\n        },\n        \"askPrice\": {\n          \"type\": \"string\"\n        },\n        \"askQty\": {\n          \"type\": \"string\"\n        },\n        \"openPrice\": {\n          \"type\": \"string\"\n        },\n        \"highPrice\": {\n          \"type\": \"string\"\n        },\n        \"lowPrice\": {\n          \"type\": \"string\"\n        },\n        \"volume\": {\n          \"type\": \"string\"\n        },\n        \"quoteVolume\": {\n          \"type\": \"string\"\n        },\n        \"openTime\": {\n          \"type\": \"integer\"\n        },\n        \"closeTime\": {\n          \"type\": \"integer\"\n        },\n        \"firstId\": {\n          \"type\": \"integer\"\n        },\n        \"lastId\": {\n          \"type\": \"integer\"\n        },\n        \"count\": {\n          \"type\": \"integer\"\n        }\n      },\n      \"required\": [\n        \"symbol\",\n        \"priceChange\",\n        \"priceChangePercent\",\n        \"weightedAvgPrice\",\n        \"prevClosePrice\",\n        \"lastPrice\",\n        \"lastQty\",\n        \"bidPrice\",\n        \"bidQty\",\n        \"askPrice\",\n        \"askQty\",\n        \"openPrice\",\n        \"highPrice\",\n        \"lowPrice\",\n        \"volume\",\n        \"quoteVolume\",\n        \"openTime\",\n        \"closeTime\",\n        \"firstId\",\n        \"lastId\",\n        \"count\"\n      ]\n    }\n  ]\n}",
+			"type": "string"
+		}
+	]
+}

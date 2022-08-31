@@ -1,0 +1,32 @@
+[
+	{
+		"name":"currencies",
+        "validation":
+			{
+				"expStatusCode" : 200,
+				"expLength": 166
+			}
+	},
+    	{
+		"name":"#currencies%",
+        "validation":
+			{
+				"expStatusCode" : 404
+			}
+},
+    	{
+		"name":"/",
+        "validation":
+			{
+				"expStatusCode" : 403
+			}
+},
+    	{
+		"name":"&",
+        "validation":
+			{
+				"expStatusCode" : 404
+			}
+	}
+    
+]

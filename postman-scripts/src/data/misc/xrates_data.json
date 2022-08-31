@@ -1,0 +1,37 @@
+[
+	{
+		"name":"USD",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+	},
+    	{
+		"name":"CAD",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+},
+    	{
+		"name":"INR",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+},
+    	{
+		"name":"&",
+        "validation":
+			{
+				"expStatusCode" : 404
+			}
+	},
+    	{
+		"name":"",
+        "validation":
+			{
+				"expStatusCode" : 404
+			}
+}   
+]

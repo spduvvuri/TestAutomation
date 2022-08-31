@@ -1,0 +1,26 @@
+[
+	{
+		"lon":"113.2",
+        "lat":"23.1",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+	},
+	{
+		"lon":"42.06",
+        "lat":"87.98",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+	},
+	{
+		"lon":"42.06",
+        "lat":"-87.98",
+        "validation":
+			{
+				"expStatusCode" : 200
+			}
+	}
+]
